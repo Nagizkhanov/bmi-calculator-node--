@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Результат BMI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container result">
+    <h1 id="bmi-value"></h1>
+    <h2 id="bmi-category"></h2>
+    <a href="/" class="btn-back">Новый расчёт</a>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const bmi = params.get('bmi');
+    const category = params.get('category');
+    const color = params.get('color');
+
+    document.getElementById('bmi-value').textContent = `Ваш BMI: ${bmi}`;
+    const cat = document.getElementById('bmi-category');
+    cat.textContent = `Категория: ${category}`;
+    cat.style.color = color;
+    document.getElementById('bmi-value').style.color = color;
+  </script>
+</body>
+</html>
