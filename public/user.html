@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Random User Dashboard</h1>
+
+    <button id="loadUser">Get Random User</button>
+
+    <div id="output"></div>
+  </div>
+
+  <script>
+    document.getElementById('loadUser').onclick = async () => {
+      const response = await fetch('/api/user-data');
+      const data = await response.json();
+
+      document.getElementById('output').innerHTML = `
+        <h2>${data.user.firstName} ${data.user.lastName}</h2>
+        <img src="${data.user.picture}" width="120">
+
+        <p><b>Gender:</b> ${data.user.gender}</p>
+        <p><b>Age:</b> ${data.user.age}</p>
+        <p><b>Date of birth:</b> ${data.user.dob}</p>
+
+        <p><b>City:</b> ${data.user.city}</p>
+        <p><b>Country:</b> ${data.country.name}</p>
+        <p><b>Capital:</b> ${data.country.capital}</p>
+
+        <p><b>Currency:</b> ${data.country.currency}</p>
+        <p>1 ${data.country.currency} = ${data.exchange.usd} USD</p>
+        <p>1 ${data.country.currency} = ${data.exchange.kzt} KZT</p>
+      `;
+    };
+  </script>
+</body>
+</html>
